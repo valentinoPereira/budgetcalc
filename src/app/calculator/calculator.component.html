@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="monthly_income">What is your average monthly income ? </label>
+      <input type="number" name="monthly_income" class="form-control" placeholder="Monthly Income" [(ngModel)]="incomePerMonth" (ngModelChange)="calc()" id="monthly_income">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="daily_spending">What is your average daily spending ? </label>
+      <input type="number" name="daily_spending" class="form-control" placeholder="Daily Spending" [(ngModel)]="expensePerDay" (ngModelChange)="calc()" id="daily_spending">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="working_days">How many days do you spend in a month ? </label>
+      <input type="number" name="working_days" class="form-control" placeholder="Month Days" [(ngModel)]="workingDaysPerMonth" (ngModelChange)="calc()" max="30" min="0" id="working_days">
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="special_spending">Any special spending this year eg. new mobile, laptop, house ? </label>
+      <input type="number" name="special_spending" class="form-control" placeholder="Special Amount" [(ngModel)]="expenseSpecial" (ngModelChange)="calc()" id="special_spending">
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4 class="panel-title">Budget Summary</h4>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <p>
+          Income per month: <span>{{ incomePerMonth | currency:'INR' }}</span>
+        </p>
+        <p>
+          Income Per year: <span [ngClass]="{'text-danger': savingPerMonth < 0}">{{ incomePerYear | currency:'INR' }}</span>
+        </p>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <p>
+          Expense per month: <span>{{ expensePerMonth | currency:'INR' }}</span>
+        </p>
+        <p>
+          Expense per year: <span>{{ expensePerYear | currency:'INR' }}</span>
+        </p>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <p>
+          Savings Per month: <span [ngClass]="{'text-danger': savingPerMonth < 0}">{{ savingPerMonth | currency:'INR' }}</span>
+        </p>
+        <p>
+          Savings per year: <b [ngClass]="{'text-danger': expensePerYear > savingPerYear, 'text-success': savingPerYear > 100000}">{{ savingPerYear | currency:'INR' }}</b>
+        </p>
+      </div>
+    </div>
+    
+   
+  </div>
+</div>
+
+<br><br><br>
+<p class="text-muted"><b>BudgetCalc</b> by &copy;Valentino Pereira (<a href="https://github.com/valentinoPereira">GitHub</a>), Year: 2018</p>

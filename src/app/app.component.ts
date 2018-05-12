@@ -6,7 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Budget Calculator';
-
-  income: number = 0;
+  title: String = 'Budget Calculator';
 }
